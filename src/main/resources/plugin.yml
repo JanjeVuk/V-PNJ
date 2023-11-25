@@ -1,0 +1,4 @@
+name: V-PNJ
+version: '${project.version}'
+main: net.etum.vpnj.Main
+api-version: '1.20'
