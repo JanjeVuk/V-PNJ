@@ -1,6 +1,7 @@
 package net.etum.vpnj.Manager;
 
 import net.citizensnpcs.api.event.NPCRightClickEvent;
+import net.etum.vpnj.Events.WeatherMessage;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.World;
@@ -41,7 +42,14 @@ public class InteractManager implements Listener {
         if (interactionSection != null) {
             for (String key : interactionSection.getKeys(false)) {
                 if (!key.equalsIgnoreCase("DEFAULT")) {
-
+                    String type = interactionSection.getString(key + ".TYPE");
+                    if(type == null)continue;
+                    switch (type){
+                        case "WEATHER":
+                            return WeatherMessage.action(player, config, key);
+                        default:
+                            break;
+                    }
                 }
             }
         }
